@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+	--clr-primary-500: #69707d;
+	--clr-secondary-500: #1d2026;
+	--clr-accent-500: #ff7e1b;
+
+	--clr-primary-contrast-500: #ffffff;
+	--clr-accent-contrast-500: #ffffff;
+
+	--clr-primary: var(--clr-primary-500);
+	--clr-primary-contrast: var(--clr-primary-contrast-500);
+	--clr-secondary: var(--clr-secondary-500);
+	--clr-accent: var(--clr-accent-500);
+	--clr-accent-contrast: var(--clr-accent-contrast-500);
+
+	// font-family
+	--ff-1: 'Kumbh Sans', sans-serif;
+	--ff-2: 'Source Code Pro', monospace;
+
+	// font size
+
+	--fs-300: 0.9375rem;
+	--fs-400: 1rem;
+	--ff-400: 1.6rem;
+	--ff-600: 2.4rem;
+}

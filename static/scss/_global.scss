@@ -1,0 +1,29 @@
+body {
+	line-height: calc(2px + 2ex + 2px);
+	background-color: var(--clr-primary-contrast);
+	color: var(--clr-primary);
+	font-family: var(--ff-1);
+	font-size: var(--fs-400);
+}
+
+.ep-container {
+	max-width: 1110px;
+	margin-inline: auto;
+}
+
+h1,
+h2,
+h3 {
+	color: var(--clr-secondary);
+}
+
+.list--unstyled {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: var(--clr-primary);
+}
