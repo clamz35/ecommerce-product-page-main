@@ -11,6 +11,11 @@
 		"strict": true,
 		"paths": {
 			"@layout/*": ["src/layout/*"],
+			"@components/*": ["src/components/*"],
+			"@shared/*": ["src/shared/*"],
+			"@services/*": ["src/services/*"],
+			"@routes/*": ["src/routes/*"],
+			"@stores/*": ["src/stores/*"],
 		}
 	}
 }

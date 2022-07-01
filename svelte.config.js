@@ -11,13 +11,23 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		vite: {
+			server: {
+				fs: {
+					allow: ['static'],
+				},
+			},
 			resolve: {
 				alias: {
-					'@layout': resolve('/src/layout')
-				}
-			}
-		}
-	}
+					'@layout': resolve('/src/layout'),
+					'@components': resolve('/src/components'),
+					'@shared': resolve('/src/shared'),
+					'@routes': resolve('/src/routes'),
+					'@services': resolve('/src/services'),
+					'@stores': resolve('/src/stores'),
+				},
+			},
+		},
+	},
 };
 
 export default config;

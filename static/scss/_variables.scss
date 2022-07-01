@@ -2,6 +2,8 @@
 :root {
 	--clr-primary-500: #69707d;
 	--clr-secondary-500: #1d2026;
+	--clr-accent-300: #ffeee2;
+	--clr-accent-400: #ffab6a;
 	--clr-accent-500: #ff7e1b;
 
 	--clr-primary-contrast-500: #ffffff;
@@ -18,9 +20,13 @@
 	--ff-2: 'Source Code Pro', monospace;
 
 	// font size
-
+	--fs-100: 0.625rem;
+	--fs-200: 0.8125rem;
 	--fs-300: 0.9375rem;
 	--fs-400: 1rem;
+	--fs-500: 1.75rem;
+	--fs-700: 2.75rem;
+
 	--ff-400: 1.6rem;
 	--ff-600: 2.4rem;
 }
