@@ -6,9 +6,9 @@
 </script>
 
 <div class="product-price">
-	<span class="product-price__price-with-promo">${product.priceWithPromotion}</span>
+	<span class="product-price__price-with-promo">${product.priceWithPromotion.toFixed(2)}</span>
 	<span class="product-price__promo-percent"><PromoBadge promo={product.promotionPercent} /></span>
-	<span class="product-price__price">${product.price}</span>
+	<span class="product-price__price">${product.price.toFixed(2)}</span>
 </div>
 
 <style lang="scss" scoped>
