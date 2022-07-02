@@ -1,7 +1,7 @@
 <script>
 	import CartContent from '@components/cart-content.svelte';
 	import Popover from '@shared/components/popover.svelte';
-	import { cart } from '@stores/cart.store';
+	import { productsQuantity } from '@stores/cart.store';
 	import { popoverOpenState } from '@stores/popover.store';
 
 	let menuIsOpen = false;
@@ -41,7 +41,9 @@
 				on:click={popoverOpenState.toggle}
 			>
 				<img src="/images/icon-cart.svg" alt="Your cart" title="Your cart" />
-				<span class="header-actions__cart-quantity">{cart.productsQuantity($cart)}</span>
+				{#if $productsQuantity > 0}
+					<span class="header-actions__cart-quantity">{$productsQuantity}</span>
+				{/if}
 			</button>
 			{#if $popoverOpenState}
 				<Popover>

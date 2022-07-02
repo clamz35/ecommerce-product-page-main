@@ -1,6 +1,6 @@
 import { Cart, type CartInterface } from '@shared/models/cart.model';
 import type { ProductInterface } from '@shared/models/product.model';
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
 function createCart() {
 	const { subscribe, set, update } = writable<CartInterface>(new Cart([]));
@@ -21,11 +21,12 @@ function createCart() {
 				return cart;
 			});
 		},
-		productsQuantity: (cart: CartInterface) => {
-			return cart.products.reduce((acc, p) => acc + p.quantity, 0);
-		},
 		reset: set(new Cart([])),
 	};
 }
 
 export const cart = createCart();
+
+export const productsQuantity = derived(cart, ($cart) =>
+	$cart.products.reduce((acc, p) => acc + p.quantity, 0),
+);
