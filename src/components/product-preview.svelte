@@ -1,11 +1,14 @@
 <script lang="ts">
+	import Dialog from '@shared/components/dialog.svelte';
 	import type { ProductImage } from '@shared/models/product-image.model';
 	import type { Product } from '@shared/models/product.model';
+	import { media } from '@stores/media-queries.store';
 
 	export let product: Product;
+	export let isModal = false;
 
 	let selected = product.images[0];
-
+	let dialogIsVisible = false;
 	function onThumbnailClick(image: ProductImage) {
 		selected = image;
 	}
@@ -30,10 +33,17 @@
 </script>
 
 <div class="product-preview">
+	{#if dialogIsVisible && $media.lgUp}
+		<Dialog bind:visible={dialogIsVisible}>
+			<svelte:self {product} isModal={true} />
+		</Dialog>
+	{/if}
 	<div class="product-preview__big">
 		<button
 			type="button"
 			class="btn--unstyled product-preview__nav-btn product-preview__nav-btn-previous"
+			class:product-preview__nav-btn--visible={isModal}
+			class:product-preview__nav-btn--modal={isModal}
 			on:click={displayPreviousImage}
 		>
 			<img
@@ -43,6 +53,7 @@
 			/>
 		</button>
 		<img
+			on:click={() => (!isModal ? (dialogIsVisible = true) : '')}
 			class="product-preview__big-image"
 			src={selected.src}
 			alt={`Product ${product.name} thumbnail ${selected.id}`}
@@ -51,6 +62,8 @@
 		<button
 			type="button"
 			class="btn--unstyled product-preview__nav-btn product-preview__nav-btn-next"
+			class:product-preview__nav-btn--visible={isModal}
+			class:product-preview__nav-btn--modal={isModal}
 			on:click={displayNextImage}
 		>
 			<img
@@ -93,6 +106,7 @@
 			}
 		}
 		&__nav-btn {
+			$navBtnScope: &;
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
@@ -107,6 +121,19 @@
 			}
 			&-next {
 				right: 16px;
+			}
+
+			&--visible {
+				display: grid;
+			}
+			&--modal {
+				&#{$navBtnScope}-previous {
+					left: -20px;
+				}
+
+				&#{$navBtnScope}-next {
+					right: -20px;
+				}
 			}
 		}
 		&__small {

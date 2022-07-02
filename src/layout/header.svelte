@@ -4,15 +4,31 @@
 	import { cart } from '@stores/cart.store';
 	import { popoverOpenState } from '@stores/popover.store';
 
-	let avatarPopoverIsDisplayed = false;
+	let menuIsOpen = false;
+	const toggleMenu = () => {
+		menuIsOpen = !menuIsOpen;
+	};
+
+	const closeMenu = () => {
+		menuIsOpen = false;
+	};
 </script>
 
 <div class="header">
+	<button class="header__menu btn--unstyled" on:click={toggleMenu}>
+		<img src="/images/icon-menu.svg" alt="Toggle menu" title="Toggle menu" />
+	</button>
+
 	<h1 class="header__title" aria-label="Sneakers"><img src="/images/logo.svg" alt="Sneakers" /></h1>
 
-	<nav class="header__nav">
+	<nav class="header__nav" class:header__nav--open={menuIsOpen}>
+		<button class="header__nav-close btn--unstyled" on:click={closeMenu}>
+			<img src="/images/icon-close.svg" alt="Close menu" title="Close menu" />
+		</button>
 		<ul class="header__nav-list list--unstyled">
-			<li><a href="/">Home</a></li>
+			<li><a href="/collections">Collections</a></li>
+			<li><a href="/collections/men">Men</a></li>
+			<li><a href="/collection/women">Women</a></li>
 			<li><a href="/about">About</a></li>
 			<li><a href="/contact">Contact</a></li>
 		</ul>
@@ -21,7 +37,7 @@
 		<div class="header-actions__cart">
 			<button
 				type="button"
-				class="btn__unstyled header-actions__cart-icon"
+				class="btn--unstyled header-actions__cart-icon"
 				on:click={popoverOpenState.toggle}
 			>
 				<img src="/images/icon-cart.svg" alt="Your cart" title="Your cart" />
@@ -56,13 +72,26 @@
 		height: var(--header-height, 112px);
 		border-bottom: 1px solid #e4e9f2;
 
+		&__menu {
+			display: var(--header-menu-icon-display, none);
+			img {
+				transition: filter 0.2s ease;
+			}
+			&:hover {
+				img {
+					filter: brightness(0.5);
+				}
+			}
+		}
+
 		&__title {
 			flex: 0;
 		}
 
 		&__nav {
 			flex: 1;
-			@include md-down {
+			display: var(--nav-display, block);
+			&-close {
 				display: none;
 			}
 		}
@@ -132,6 +161,46 @@
 			--header-height: 64px;
 			--header-avatar-height: 24px;
 			--header-actions-gap: 22px;
+			--header-menu-icon-display: inline;
+			--nav-display: none;
+
+			&__nav {
+				$navScope: &;
+				width: min(250px, 100vw);
+
+				flex-direction: column;
+				gap: 54px;
+
+				padding: 24px;
+
+				transition: opacity 0.2s ease, left 0.5s ease-in-out;
+
+				position: fixed;
+				z-index: 5;
+				inset: 0 auto 0 -150%;
+				--nav-display: flex;
+				opacity: 0;
+				background-color: var(--clr-primary-contrast);
+
+				font-weight: 700;
+				&,
+				a {
+					font-size: var(--fs-450);
+					color: var(--clr-secondary);
+				}
+				&-close {
+					display: inline;
+				}
+
+				&-list {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+				&--open {
+					opacity: 1;
+					inset: 0 auto 0 0;
+				}
+			}
 			padding-inline: 24px;
 		}
 	}
