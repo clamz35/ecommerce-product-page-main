@@ -4,6 +4,10 @@
 	import '../../static/scss/styles.scss';
 </script>
 
+<svelte:head>
+	<title>Ecommerce product page</title>
+</svelte:head>
+
 <div class="overlay" class:overlay--visible={$popoverOpenState} on:click={popoverOpenState.close} />
 <header class="ep-container">
 	<Header />

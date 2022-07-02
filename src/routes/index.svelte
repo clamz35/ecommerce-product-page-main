@@ -6,6 +6,10 @@
 	const product = getProduct();
 </script>
 
+<svelte:head>
+	<title>Ecommerce product page - {product.name}</title>
+</svelte:head>
+
 <div class="home">
 	<ProductPreview {product} />
 	<ProductDescription {product} />

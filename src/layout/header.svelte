@@ -19,7 +19,7 @@
 		<img src="/images/icon-menu.svg" alt="Toggle menu" title="Toggle menu" />
 	</button>
 
-	<h1 class="header__title" aria-label="Sneakers"><img src="/images/logo.svg" alt="Sneakers" /></h1>
+	<h1 class="header__title"><img src="/images/logo.svg" alt="Sneakers" /></h1>
 
 	<nav class="header__nav" class:header__nav--open={menuIsOpen}>
 		<button class="header__nav-close btn--unstyled" on:click={closeMenu}>
